@@ -1,33 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkihj1vruej8b"]
+[gd_scene load_steps=7 format=3 uid="uid://bkihj1vruej8b"]
 
-[ext_resource type="Texture2D" uid="uid://ba1tt88evqif6" path="res://bg.jpg" id="1_nqtu2"]
-[ext_resource type="Texture2D" uid="uid://dyx1q215xay35" path="res://floor.png" id="2_wh305"]
-[ext_resource type="Texture2D" uid="uid://bkifc37n76qhw" path="res://bird1.png" id="3_we58v"]
-[ext_resource type="Texture2D" uid="uid://dtf4upfw35qsx" path="res://bird2.png" id="4_ax2ap"]
+[ext_resource type="Texture2D" uid="uid://cx3k7m00bl26f" path="res://assets/bg.png" id="1_gywt5"]
+[ext_resource type="Texture2D" uid="uid://bsvykbti3pxt0" path="res://assets/ground.png" id="2_rf1wq"]
+[ext_resource type="Texture2D" uid="uid://bm86sfovbe658" path="res://assets/bird.png" id="3_dhjwb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnhdb"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_nicrw"]
+radius = 36.0
 
-[sub_resource type="Animation" id="Animation_2om3t"]
+[sub_resource type="Animation" id="Animation_fwpdx"]
 resource_name = "fly"
-length = 4.0001
+length = 0.30001
 loop_mode = 1
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("3_we58v"), ExtResource("4_ax2ap"), ExtResource("3_we58v"), ExtResource("4_ax2ap"), ExtResource("3_we58v")]
-}
-
-[sub_resource type="Animation" id="Animation_dd0nh"]
-resource_name = "die"
-step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -35,32 +18,15 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": []
-}
-
-[sub_resource type="Animation" id="Animation_i8gjp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0]
+"values": [1, 0, 2]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rtjup"]
 _data = {
-"RESET": SubResource("Animation_i8gjp"),
-"die": SubResource("Animation_dd0nh"),
-"fly": SubResource("Animation_2om3t")
+"fly": SubResource("Animation_fwpdx")
 }
 
 [node name="Game" type="Node2D"]
@@ -68,29 +34,34 @@ _data = {
 [node name="Background" type="Sprite2D" parent="."]
 
 [node name="Bg" type="Sprite2D" parent="Background"]
-position = Vector2(375.5, 669)
-scale = Vector2(0.788775, 0.941497)
-texture = ExtResource("1_nqtu2")
+position = Vector2(373.25, 552)
+scale = Vector2(2.73437, 2.93229)
+texture = ExtResource("1_gywt5")
 
 [node name="Floor" type="Sprite2D" parent="Background"]
 z_index = 1
-position = Vector2(390, 1216)
-scale = Vector2(2.04915, 2.16216)
-texture = ExtResource("2_wh305")
+position = Vector2(389, 1195)
+scale = Vector2(2.91446, 2.65251)
+texture = ExtResource("2_rf1wq")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
+[node name="Bird" type="RigidBody2D" parent="."]
+mass = 0.23
+gravity_scale = 10.0
+linear_velocity = Vector2(10, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-shape = SubResource("RectangleShape2D_lnhdb")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bird"]
+position = Vector2(164, 742)
+shape = SubResource("CircleShape2D_nicrw")
 
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
-position = Vector2(181, 715)
-scale = Vector2(0.993198, 1.0911)
-texture = ExtResource("3_we58v")
+[node name="Sprite2D" type="Sprite2D" parent="Bird"]
+position = Vector2(163, 744)
+scale = Vector2(2.24712, 2.46863)
+texture = ExtResource("3_dhjwb")
+hframes = 3
+frame = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="RigidBody2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bird"]
 autoplay = "fly"
-speed_scale = 1.5
 libraries = {
 "": SubResource("AnimationLibrary_rtjup")
 }
