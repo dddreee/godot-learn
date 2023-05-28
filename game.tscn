@@ -45,20 +45,18 @@ scale = Vector2(2.91446, 2.65251)
 texture = ExtResource("2_rf1wq")
 
 [node name="Bird" type="RigidBody2D" parent="."]
-mass = 0.23
+position = Vector2(174, 792)
 gravity_scale = 10.0
-linear_velocity = Vector2(10, 0)
+linear_velocity = Vector2(100, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bird"]
-position = Vector2(164, 742)
 shape = SubResource("CircleShape2D_nicrw")
 
 [node name="Sprite2D" type="Sprite2D" parent="Bird"]
-position = Vector2(163, 744)
 scale = Vector2(2.24712, 2.46863)
 texture = ExtResource("3_dhjwb")
 hframes = 3
-frame = 2
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Bird"]
 autoplay = "fly"
