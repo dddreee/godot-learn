@@ -1,14 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0xstai8bjye3"]
+[gd_scene load_steps=3 format=3 uid="uid://d0xstai8bjye3"]
 
 [ext_resource type="PackedScene" uid="uid://cdh1r8lox2q5n" path="res://Sprite.tscn" id="1_xqal2"]
+[ext_resource type="Script" path="res://TestSignal.gd" id="2_0f4is"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Start" type="Node2D"]
 
 [node name="Sprite2D" parent="." instance=ExtResource("1_xqal2")]
 position = Vector2(380, 630)
 
 [node name="Timer" type="Timer" parent="Sprite2D"]
 autostart = true
+
+[node name="TestSignal" type="Sprite2D" parent="Sprite2D"]
+script = ExtResource("2_0f4is")
 
 [node name="Button" type="Button" parent="."]
 offset_left = 89.0
@@ -18,4 +22,6 @@ offset_bottom = 297.0
 text = "Toggle motion"
 
 [connection signal="timeout" from="Sprite2D/Timer" to="Sprite2D" method="_on_timer_timeout"]
+[connection signal="test_signal" from="Sprite2D/TestSignal" to="Sprite2D" method="_on_test_signal_test_signal"]
 [connection signal="pressed" from="Button" to="Sprite2D" method="_on_button_pressed"]
+[connection signal="pressed" from="Button" to="Sprite2D/TestSignal" method="_on_button_pressed"]

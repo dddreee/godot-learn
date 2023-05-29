@@ -37,3 +37,7 @@ func _on_button_pressed():
 
 func _on_timer_timeout():
 	visible = not visible
+
+
+func _on_test_signal_test_signal(value):
+	print(value, "from test_signal")
