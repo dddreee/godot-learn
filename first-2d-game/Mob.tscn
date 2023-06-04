@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bujdkmbyu2anr"]
+[gd_scene load_steps=10 format=3 uid="uid://dlhwfl85fupn5"]
 
 [ext_resource type="Script" path="res://first-2d-game/Mob.gd" id="1_xh2d4"]
 [ext_resource type="Texture2D" uid="uid://crek4li1rpvn6" path="res://first-2d-game/art/enemyFlyingAlt_1.png" id="2_4vvsu"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://buy3p6we8ywat" path="res://first-2d-game/art/enemyWalking_1.png" id="6_f4a6p"]
 [ext_resource type="Texture2D" uid="uid://e286oe68r0yt" path="res://first-2d-game/art/enemyWalking_2.png" id="7_bntgd"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_n38bs"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_my7sm"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -44,9 +44,9 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oaqqa"]
-radius = 52.0
-height = 106.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmpp6"]
+radius = 56.0
+height = 144.0
 
 [node name="RigidBody2D" type="RigidBody2D"]
 collision_mask = 0
@@ -55,13 +55,12 @@ script = ExtResource("1_xh2d4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
-sprite_frames = SubResource("SpriteFrames_n38bs")
-animation = &"walk"
-autoplay = "swim"
+sprite_frames = SubResource("SpriteFrames_my7sm")
+animation = &"fly"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_oaqqa")
+shape = SubResource("CapsuleShape2D_kmpp6")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
